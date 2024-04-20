@@ -11,31 +11,165 @@
 
   <title>App | Start2️⃣Code</title>
 
-  <link rel="shortcut icon" href="tutorial/static/images/favicon.ico" type="image/x-icon">
-
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="stylesheet" href="main.css">
   <style>
-    body {
-      width: calc(100% - 2rem);
-      background: #000;
-      color: white;
-      font-family: Arial, Helvetica, sans-serif;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    h2 {
-      font-size: 3rem;
-    }
   </style>
 </head>
 
 <body>
 
-  <h2>Coming soon...</h2>
+  <h1>Start2️⃣Drum</h1>
 
+  <section class="game">
+    <h2>Ontgrendel de drummachine</h2>
+    <button class="game-button" data-choice="blad">🖐️ Blad</button>
+    <button class="game-button" data-choice="steen">✊ Steen</button>
+    <button class="game-button" data-choice="schaar">✌️ Schaar</button>
+
+    <p id="user-choice"></p>
+    <p id="computer-choice"></p>
+    <p id="result"></p>
+  </section>
+
+  <section id="drums">
+    <h2 id="drums-title" class="hidden">Speel op de drums</h2>
+    <div>
+      <button class="drum-button" id="key-81" disabled>
+        <kbd>q</kbd>
+        <span>kick</span>
+      </button>
+      <button class="drum-button" id="key-83" disabled>
+        <kbd>s</kbd>
+        <span>stick</span>
+      </button>
+      <button class="drum-button" id="key-68" disabled>
+        <kbd>d</kbd>
+        <span>snare</span>
+      </button>
+      <button class="drum-button" id="key-70" disabled>
+        <kbd>f</kbd>
+        <span>tom 1</span>
+      </button>
+      <button class="drum-button" id="key-71" disabled>
+        <kbd>g</kbd>
+        <span>tom 2</span>
+      </button>
+      <button class="drum-button" id="key-72" disabled>
+        <kbd>h</kbd>
+        <span>tom 3</span>
+      </button>
+      <button class="drum-button" id="key-74" disabled>
+        <kbd>j</kbd>
+        <span>hihat 1</span>
+      </button>
+      <button class="drum-button" id="key-75" disabled>
+        <kbd>k</kbd>
+        <span>hihat 2</span>
+      </button>
+      <button class="drum-button" id="key-76" disabled>
+        <kbd>l</kbd>
+        <span>crash</span>
+      </button>
+    </div>
+
+    <div>
+      <audio id="audio-81" preload="auto" src="sounds/kick.wav"></audio>
+      <audio id="audio-83" preload="auto" src="sounds/stick.wav"></audio>
+      <audio id="audio-68" preload="auto" src="sounds/snare.wav"></audio>
+      <audio id="audio-70" preload="auto" src="sounds/tom1.wav"></audio>
+      <audio id="audio-71" preload="auto" src="sounds/tom2.wav"></audio>
+      <audio id="audio-72" preload="auto" src="sounds/tom3.wav"></audio>
+      <audio id="audio-74" preload="auto" src="sounds/hihat-closed.wav"></audio>
+      <audio id="audio-75" preload="auto" src="sounds/hihat-open.wav"></audio>
+      <audio id="audio-76" preload="auto" src="sounds/crash.wav"></audio>
+    </div>
+  </section>
+
+  <script>
+    /**
+     * Inspiratie: 
+     * - https://www.youtube.com/watch?v=ec8vSKJuZTk
+     * - https://codewithcurious.com/projects/drum-kit-with-html-css-and-js/
+     * - https://medium.com/@iminked/build-a-drum-machine-with-javascript-html-and-css-33a53eeb1f73
+     */
+
+    /**
+     * Blad, steen, schaar 
+     * Blad wint van steen.  
+     * Steen wint van schaar. 
+     * Schaar wint van blad. 
+     */
+
+    // Set variables 
+    let userChoice, computerChoice;
+    const choices = ['blad', 'steen', 'schaar'];
+    const elUserChoice = document.getElementById('user-choice');
+    const elComputerChoice = document.getElementById('computer-choice');
+    const elResult = document.getElementById('result');
+    const gameButtons = document.querySelectorAll('.game-button');
+    const elDrumsTitle = document.getElementById('drums-title');
+    const drumButtons = document.querySelectorAll('.drum-button');
+
+    // Get computer's choice
+    function getComputerChoice() {
+      return choices[Math.floor(Math.random() * choices.length)];
+    }
+
+    // Play game
+    function playGame(userChoice, computerChoice) {
+      if (userChoice === computerChoice) {
+        elResult.textContent = 'Gelijkspel';
+      } else if (userChoice === 'blad' && computerChoice === 'steen'
+        || userChoice === 'steen' && computerChoice === 'schaar'
+        || userChoice === 'schaar' && computerChoice === 'blad') {
+        elResult.textContent = 'Je wint!';
+        unlockDrums()
+      } else {
+        elResult.textContent = 'Je verliest.';
+      }
+    }
+
+    for (const button of gameButtons) {
+      button.addEventListener('click', () => {
+        // Set userChoice
+        userChoice = button.dataset.choice;
+        elUserChoice.textContent = `Jij: ${userChoice}`;
+        // Set computerChoice after 500ms
+        setTimeout(() => {
+          computerChoice = getComputerChoice();
+          elComputerChoice.textContent = `Computer: ${computerChoice}`;
+        }, 500);
+        // Play round after 500ms
+        setTimeout(() => {
+          playGame(userChoice, computerChoice);
+        }, 500);
+      });
+    }
+
+    /**
+     * Drums
+     */
+    function unlockDrums() {
+      elDrumsTitle.classList.remove('hidden');
+      for (const button of drumButtons) {
+        button.disabled = false;
+        window.addEventListener('keydown', (e) => {
+          const drumButton = document.getElementById(`key-${e.keyCode}`);
+          drumButton.classList.add('active');
+          const audio = document.getElementById(`audio-${e.keyCode}`);
+          if (!audio) return;
+          // if (!audio.paused) audio.pause();
+          audio.currentTime = 0;
+          audio.play();
+          setTimeout(() => {
+            drumButton.classList.remove('active');
+          }, 100);
+        })
+      }
+    }
+
+  </script>
 </body>
 
 </html>
