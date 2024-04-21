@@ -37,56 +37,58 @@
   <section id="drums">
     <h2 id="drums-title" class="hidden">Speel op de drums</h2>
     <div>
-      <button class="drum-button" id="key-81" disabled>
-        <kbd>q</kbd>
+      <button class="drum-button" id="key-q" disabled>
+        <kbd>q|a</kbd>
         <span>kick</span>
       </button>
-      <button class="drum-button" id="key-83" disabled>
+      <button class="drum-button" id="key-s" disabled>
         <kbd>s</kbd>
         <span>stick</span>
       </button>
-      <button class="drum-button" id="key-68" disabled>
+      <button class="drum-button" id="key-d" disabled>
         <kbd>d</kbd>
         <span>snare</span>
       </button>
-      <button class="drum-button" id="key-70" disabled>
+      <button class="drum-button" id="key-f" disabled>
         <kbd>f</kbd>
         <span>tom 1</span>
       </button>
-      <button class="drum-button" id="key-71" disabled>
+      <button class="drum-button" id="key-g" disabled>
         <kbd>g</kbd>
         <span>tom 2</span>
       </button>
-      <button class="drum-button" id="key-72" disabled>
+      <button class="drum-button" id="key-h" disabled>
         <kbd>h</kbd>
         <span>tom 3</span>
       </button>
-      <button class="drum-button" id="key-74" disabled>
+      <button class="drum-button" id="key-j" disabled>
         <kbd>j</kbd>
         <span>hihat 1</span>
       </button>
-      <button class="drum-button" id="key-75" disabled>
+      <button class="drum-button" id="key-k" disabled>
         <kbd>k</kbd>
         <span>hihat 2</span>
       </button>
-      <button class="drum-button" id="key-76" disabled>
+      <button class="drum-button" id="key-l" disabled>
         <kbd>l</kbd>
         <span>crash</span>
       </button>
     </div>
 
     <div>
-      <audio id="audio-81" preload="auto" src="static/sounds/kick.wav"></audio>
-      <audio id="audio-83" preload="auto" src="static/sounds/stick.wav"></audio>
-      <audio id="audio-68" preload="auto" src="static/sounds/snare.wav"></audio>
-      <audio id="audio-70" preload="auto" src="static/sounds/tom1.wav"></audio>
-      <audio id="audio-71" preload="auto" src="static/sounds/tom2.wav"></audio>
-      <audio id="audio-72" preload="auto" src="static/sounds/tom3.wav"></audio>
-      <audio id="audio-74" preload="auto" src="static/sounds/hihat-closed.wav"></audio>
-      <audio id="audio-75" preload="auto" src="static/sounds/hihat-open.wav"></audio>
-      <audio id="audio-76" preload="auto" src="static/sounds/crash.wav"></audio>
+      <audio id="audio-q" preload="auto" src="static/sounds/ogg/kick.ogg"></audio>
+      <audio id="audio-s" preload="auto" src="static/sounds/ogg/stick.ogg"></audio>
+      <audio id="audio-d" preload="auto" src="static/sounds/ogg/snare.ogg"></audio>
+      <audio id="audio-f" preload="auto" src="static/sounds/ogg/tom1.ogg"></audio>
+      <audio id="audio-g" preload="auto" src="static/sounds/ogg/tom2.ogg"></audio>
+      <audio id="audio-h" preload="auto" src="static/sounds/ogg/tom3.ogg"></audio>
+      <audio id="audio-j" preload="auto" src="static/sounds/ogg/hihat-closed.ogg"></audio>
+      <audio id="audio-k" preload="auto" src="static/sounds/ogg/hihat-open.ogg"></audio>
+      <audio id="audio-l" preload="auto" src="static/sounds/ogg/crash.ogg"></audio>
     </div>
   </section>
+
+  <button class="reset-game-button" id="reset-game-button" disabled>Reset</button>
 
   <script src="static/js/main.js"></script>
 </body>

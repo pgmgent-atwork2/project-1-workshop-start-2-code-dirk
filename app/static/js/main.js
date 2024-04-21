@@ -16,9 +16,13 @@ const elUserChoice = document.getElementById('user-choice');
 const elComputerChoice = document.getElementById('computer-choice');
 const elGameResult = document.getElementById('game-result');
 const gameButtons = document.querySelectorAll('.game-button');
+const resetGameButton = document.getElementById('reset-game-button');
 
 const elDrumsTitle = document.getElementById('drums-title');
 const drumButtons = document.querySelectorAll('.drum-button');
+const azertyMapping = {
+  'a': 'q',
+};
 
 // Get computer's choice
 function getComputerChoice() {
@@ -26,9 +30,7 @@ function getComputerChoice() {
 }
 
 // Play game
-//  * Blad wint van steen.  
-//  * Steen wint van schaar. 
-//  * Schaar wint van blad. 
+// Blad wint van steen. | Steen wint van schaar. | Schaar wint van blad. 
 function playGame(userChoice, computerChoice) {
   if (userChoice === computerChoice) {
     elGameResult.textContent = 'Gelijkspel';
@@ -47,14 +49,16 @@ function resetGame() {
   elUserChoice.textContent = '';
   elComputerChoice.textContent = '';
   elGameResult.textContent = '';
+  elDrumsTitle.classList.add('hidden');
+  lockDrums();
 }
 
-// Add event listeners
-for (const button of gameButtons) {
-  button.addEventListener('click', () => {
+// Listen for click on game buttons
+for (const gameButton of gameButtons) {
+  gameButton.addEventListener('click', () => {
     resetGame();
     // Set userChoice
-    userChoice = button.dataset.choice;
+    userChoice = gameButton.dataset.choice;
     elUserChoice.textContent = `Jij: ${userChoice}`;
     // Set computerChoice after 300ms
     setTimeout(() => {
@@ -71,23 +75,48 @@ for (const button of gameButtons) {
 /**
  * Drums
  */
+
+// Unlock the drums 
 function unlockDrums() {
+  // Enable the drum buttons
   elDrumsTitle.classList.remove('hidden');
-  for (const button of drumButtons) {
-    button.disabled = false;
-    window.addEventListener('keydown', (e) => {
-      const key = e.key;
-      const drumButton = document.getElementById(`key-${key}`);
-      if (!drumButton) return; // Exit if the button doesn't exist     
-      drumButton.classList.add('active');
-      const audio = document.getElementById(`audio-${e.key}`);
-      if (!audio) return; // Exit if the audio element doesn't exist
-      // if (!audio.paused) audio.pause();
-      audio.currentTime = 0;
-      audio.play();
-      setTimeout(() => {
-        drumButton.classList.remove('active');
-      }, 100);
-    })
+  for (const drumButton of drumButtons) {
+    drumButton.disabled = false;
   }
+  // Listen for key press
+  document.addEventListener('keydown', listenForKeyPress);
+  // Enable the reset button
+  resetGameButton.disabled = false;
+  resetGameButton.addEventListener('click', resetGame);
 }
+
+function lockDrums() {
+  // Disable the drum buttons
+  elDrumsTitle.classList.add('hidden');
+  for (const drumButton of drumButtons) {
+    drumButton.disabled = true;
+  }
+  // Remove the key press event listener
+  document.removeEventListener('keydown', listenForKeyPress);
+  // Disable the reset button
+  resetGameButton.disabled = true;
+  resetGameButton.removeEventListener('click', resetGame);
+}
+
+// Listen for key press
+function listenForKeyPress(e) {
+  const key = azertyMapping[e.key] || e.key;
+  const drumButton = document.getElementById(`key-${key}`);
+  if (!drumButton) return; // Exit if the button doesn't exist     
+  drumButton.classList.add('active');
+  const audio = document.getElementById(`audio-${e.key}`);
+  if (!audio) return; // Exit if the audio element doesn't exist
+  // if (!audio.paused) audio.pause();
+  audio.currentTime = 0;
+  audio.play();
+  setTimeout(() => {
+    drumButton.classList.remove('active');
+  }, 100);
+}
+
+
