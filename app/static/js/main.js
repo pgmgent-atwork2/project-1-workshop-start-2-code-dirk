@@ -37,10 +37,10 @@ function playGame(userChoice, computerChoice) {
   } else if (userChoice === 'blad' && computerChoice === 'steen'
     || userChoice === 'steen' && computerChoice === 'schaar'
     || userChoice === 'schaar' && computerChoice === 'blad') {
-    elGameResult.textContent = 'Je wint!';
+    elGameResult.innerHTML = '<span class="win">Je wint!</span>';
     unlockDrums()
   } else {
-    elGameResult.textContent = 'Je verliest.';
+    elGameResult.innerHTML = '<span class="lose">Je verliest!</span>';
   }
 }
 

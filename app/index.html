@@ -23,9 +23,11 @@
 
   <section class="game">
     <h2>Ontgrendel de drummachine</h2>
-    <button class="game-button" data-choice="blad">🖐️ Blad</button>
-    <button class="game-button" data-choice="steen">✊ Steen</button>
-    <button class="game-button" data-choice="schaar">✌️ Schaar</button>
+    <div class="grid-buttons">
+      <button class="game-button" data-choice="blad">🖐️ Blad</button>
+      <button class="game-button" data-choice="steen">✊ Steen</button>
+      <button class="game-button" data-choice="schaar">✌️ Schaar</button>
+    </div>
 
     <div id="game-flow">
       <p id="user-choice"></p>
@@ -36,7 +38,7 @@
 
   <section id="drums">
     <h2 id="drums-title" class="hidden">Speel op de drums</h2>
-    <div>
+    <div class="grid-buttons">
       <button class="drum-button" id="key-q" disabled>
         <kbd>q|a</kbd>
         <span>kick</span>
