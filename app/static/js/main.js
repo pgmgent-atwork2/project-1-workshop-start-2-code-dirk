@@ -21,7 +21,7 @@ const resetGameButton = document.getElementById('reset-game-button');
 const elDrumsTitle = document.getElementById('drums-title');
 const drumButtons = document.querySelectorAll('.drum-button');
 const azertyMapping = {
-  'a': 'q',
+  'A': 'Q',
 };
 
 // Get computer's choice
@@ -105,7 +105,8 @@ function lockDrums() {
 
 // Listen for key press
 function listenForKeyPress(e) {
-  const key = azertyMapping[e.key] || e.key;
+  let key = azertyMapping[e.key] || e.key;
+  key = key.toUpperCase();
   const drumButton = document.getElementById(`key-${key}`);
   if (!drumButton) return; // Exit if the button doesn't exist     
   drumButton.classList.add('active');
