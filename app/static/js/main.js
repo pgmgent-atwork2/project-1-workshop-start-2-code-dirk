@@ -109,7 +109,7 @@ function listenForKeyPress(e) {
   const drumButton = document.getElementById(`key-${key}`);
   if (!drumButton) return; // Exit if the button doesn't exist     
   drumButton.classList.add('active');
-  const audio = document.getElementById(`audio-${e.key}`);
+  const audio = document.getElementById(`audio-${key}`);
   if (!audio) return; // Exit if the audio element doesn't exist
   // if (!audio.paused) audio.pause();
   audio.currentTime = 0;
