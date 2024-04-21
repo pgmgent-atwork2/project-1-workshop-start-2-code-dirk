@@ -1,0 +1,247 @@
+<section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Open het bestand <strong>app/static/js/main.js</strong>
+      <img src="static/images/screenshots/vscode-open-main-js.png"
+           alt="VSCode - Open main.js"
+           class="screenshot">
+    </p>
+    <a href="#/6/1" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      De elementen die onze Javascript code zal gebruiken,
+      zijn al toegevoegd:
+    </p>
+    <img src="static/images/screenshots/vscode-main-js-cache-elements.png"
+         alt="VSCode - main.js - Cache elements">
+    <br>
+    <a href="#/6/2" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie af om de keuze van de computer op te halen */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim>
+        return choices[Math.floor(Math.random() * choices.length)];
+      </code>
+    </pre>
+    </p>
+    <br>
+    <a href="#/6/3" class="navigate-down">↓</a>
+
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie af om blad-steen-schaar te spelen */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim data-line-numbers>
+        if (userChoice === computerChoice) {
+          elGameResult.innerHTML = '<span class="draw">Gelijkspel!</span>';
+        } else if (userChoice === 'blad' && computerChoice === 'steen'
+          || userChoice === 'steen' && computerChoice === 'schaar'
+          || userChoice === 'schaar' && computerChoice === 'blad') {
+          elGameResult.innerHTML = '<span class="win">Je wint!</span>';
+          unlockDrums()
+        } else {
+          elGameResult.innerHTML = '<span class="lose">Je verliest!</span>';
+        }
+      </code>
+    </pre>
+    </p>
+    <a href="#/6/4" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie af om de game te resetten */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim data-line-numbers>
+        elUserChoice.textContent = '';
+        elComputerChoice.textContent = '';
+        elGameResult.textContent = '';
+        elDrumsTitle.classList.add('hidden');
+        lockDrums();
+      </code>
+    </pre>
+    </p>
+    <a href="#/6/5" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie voor de 'game event listener' af */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim data-line-numbers>
+        resetGame();
+        // Set userChoice
+        userChoice = gameButton.dataset.choice;
+        elUserChoice.textContent = `Jij: ${userChoice}`;
+        // Set computerChoice after 300ms
+        setTimeout(() => {
+          computerChoice = getComputerChoice();
+          elComputerChoice.textContent = `Computer: ${computerChoice}`;
+        }, 300);
+        // Play game after 300ms
+        setTimeout(() => {
+          playGame(userChoice, computerChoice);
+        }, 300);
+      </code>
+    </pre>
+    </p>
+    <a href="#/6/6" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie unlockDrums() af */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim data-line-numbers>
+        // Enable the drum buttons
+        elDrumsTitle.classList.remove('hidden');
+        for (const drumButton of drumButtons) {
+          drumButton.disabled = false;
+        }
+        // Listen for key press
+        document.addEventListener('keydown', listenForKeyPress);
+        // Enable the reset button
+        resetGameButton.disabled = false;
+        resetGameButton.addEventListener('click', resetGame);
+      </code>
+    </pre>
+    </p>
+    <a href="#/6/7" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie lockDrums() af */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim data-line-numbers>
+        // Disable the drum buttons
+        elDrumsTitle.classList.add('hidden');
+        for (const drumButton of drumButtons) {
+          drumButton.disabled = true;
+        }
+        // Remove the key press event listener
+        document.removeEventListener('keydown', listenForKeyPress);
+        // Disable the reset button
+        resetGameButton.disabled = true;
+        resetGameButton.removeEventListener('click', resetGame);
+      </code>
+    </pre>
+    </p>
+    <a href="#/6/8" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Zoek de commentaar
+    <pre>
+      <code class="hljs javascript" data-trim >
+        /* TODO: maak de functie listenForKeyPress(e) af */
+      </code>
+    </pre>
+    en voeg deze code toe:
+    <pre>
+      <code class="hljs javascript" data-trim data-line-numbers>
+        const key = azertyMapping[e.key] || e.key;
+        const drumButton = document.getElementById(`key-${key}`);
+        if (!drumButton) return; // Exit if the button doesn't exist
+        drumButton.classList.add('active');
+        const audio = document.getElementById(`audio-${key}`);
+        if (!audio) return; // Exit if the audio element doesn't exist
+        audio.currentTime = 0;
+        audio.play();
+        setTimeout(() => {
+          drumButton.classList.remove('active');
+        }, 100);
+      </code>
+    </pre>
+    </p>
+    <a href="#/6/9" class="navigate-down">↓</a>
+  </section>
+
+  <section>
+    <h2>JAVASCRIPT</h2>
+
+    <p>
+      Je bent klaar met het toevoegen van Javascript, maar je app werkt nog
+      niet!
+      Daarvoor moet je het HTML-bestand linken met het Javascript-bestand.
+    </p>
+    <p>
+      Ga terug naar <strong>index.html</strong> en zoek de opmerking
+    <pre>
+      <code class="hljs html" data-trim >
+        <!-- TODO: voeg de link naar het Javascript-bestand toe -->
+      </code>
+    </pre>
+    Voeg daar deze code toe:
+    <pre>
+      <code class="hljs html" data-trim>
+        <script src="static/js/main.js"></script>
+      </code>
+    </pre>
+    </p>
+  </section>
+
+</section>

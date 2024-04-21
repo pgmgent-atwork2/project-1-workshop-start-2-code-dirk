@@ -1,0 +1,19 @@
+strong {
+  color: hsl(27, 100%, 65%);
+}
+
+.navigate-down {
+  font-size: 3rem;
+}
+
+.screenshot {
+  max-height: 300px !important;
+  border: 2px solid white !important;
+}
+
+.code-wrapper {
+  max-height: 320px !important;
+}
+.hljs-comment {
+  color: hsl(151, 40%, 45%);
+}
