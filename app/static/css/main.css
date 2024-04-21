@@ -1,3 +1,12 @@
+:root {
+  --bg-color: hsl(0, 0%, 10%);
+  --blue: hsl(207, 100%, 42%);
+  --blue-dark: hsl(207, 100%, 32%);
+  --blue-light: hsl(207, 100%, 52%);
+  --green: hsl(120, 100%, 35%);
+  --red: hsl(0, 100%, 50%);
+  --color-txt-disabled: hsl(240, 50%, 80%);
+}
 *,
 *::before,
 *::after {
@@ -20,7 +29,7 @@ body {
   min-width: 25rem;
   margin: 0 auto;
   padding-top: 2rem;
-  background: hsl(0, 0%, 10%);
+  background: var(--bg-color);
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
@@ -38,12 +47,17 @@ body {
 }
 
 .win {
-  color: hsl(120, 100%, 35%);
+  color: var(--green);
   font-size: 115%;
 }
 
 .lose {
-  color: hsl(0, 100%, 50%);
+  color: var(--red);
+  font-size: 115%;
+}
+
+.draw {
+  color: var(--blue-light);
   font-size: 115%;
 }
 
@@ -67,8 +81,8 @@ h2 {
 button {
   cursor: pointer;
   font-size: 1.5rem;
-  background-color: hsl(207, 100%, 42%);
-  border: 2px solid hsl(207, 100%, 32%);
+  background-color: var(--blue);
+  border: 2px solid var(--blue-dark);
   border-radius: 0.25rem;
   color: white;
   padding: 0.5rem 1rem;
@@ -76,7 +90,7 @@ button {
 
 button:disabled {
   opacity: 0.75;
-  color: hsl(240, 50%, 80%);
+  color: var(--color-txt-disabled);
 }
 
 /* GAME */

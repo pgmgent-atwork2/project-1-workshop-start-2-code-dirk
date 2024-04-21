@@ -33,7 +33,7 @@ function getComputerChoice() {
 // Blad wint van steen. | Steen wint van schaar. | Schaar wint van blad. 
 function playGame(userChoice, computerChoice) {
   if (userChoice === computerChoice) {
-    elGameResult.textContent = 'Gelijkspel';
+    elGameResult.innerHTML = '<span class="draw">Gelijkspel!</span>';
   } else if (userChoice === 'blad' && computerChoice === 'steen'
     || userChoice === 'steen' && computerChoice === 'schaar'
     || userChoice === 'schaar' && computerChoice === 'blad') {
