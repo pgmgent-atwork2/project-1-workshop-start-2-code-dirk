@@ -6,6 +6,7 @@
       this.buildUI();
     },
     cacheElements() {
+      this.$placeholder = document.querySelector('.placeholder');
       this.$slides = document.getElementById('slides');
     },
     async buildUI() {
@@ -19,8 +20,9 @@
         progress: true,
         center: true,
         hash: true,
-        plugins: [RevealHighlight]
+        plugins: [RevealHighlight, CopyCode]
       });
+      this.$placeholder.style.display = 'none';
       Reveal.slide(0);
     },
   };
