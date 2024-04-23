@@ -4,8 +4,10 @@
       this.numPages = 8;
       this.cacheElements();
       this.buildUI();
+      this.listenForThemeToggle();
     },
     cacheElements() {
+      this.$btnThemeToggle = document.getElementById('btn-theme-toggle');
       this.$placeholder = document.querySelector('.placeholder');
       this.$slides = document.getElementById('slides');
     },
@@ -25,6 +27,19 @@
       this.$placeholder.style.display = 'none';
       // Reveal.slide(0);
     },
+    listenForThemeToggle() {
+      this.$btnThemeToggle.addEventListener('click', () => {
+        if (document.getElementById('theme-light')) {
+          document.getElementById('theme-light').remove();
+        } else {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'static/revealjs/theme/beige.css';
+          link.id = 'theme-light';
+          document.head.appendChild(link);
+        }
+      });
+    }
   };
   app.init();
 })();

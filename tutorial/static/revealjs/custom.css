@@ -1,3 +1,18 @@
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.theme-toggle button {
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+  border-radius: 4px;
+}
+
 .placeholder {
   z-index: -10;
   height: 100vh;
