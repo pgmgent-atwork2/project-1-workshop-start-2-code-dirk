@@ -23,7 +23,7 @@
         plugins: [RevealHighlight, CopyCode]
       });
       this.$placeholder.style.display = 'none';
-      Reveal.slide(0);
+      // Reveal.slide(0);
     },
   };
   app.init();
